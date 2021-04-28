@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: microservice
+          uri: lb://microservice
+          order: 8080
+          predicates:
+            - Path=/microservice
+      loadbalancer:
+        ribbon:
+          enabled: false
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}-${random.uuid}
