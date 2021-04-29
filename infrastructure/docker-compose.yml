@@ -29,8 +29,8 @@ services:
         environment: 
             - MYSQL_DATABASE=microservice
             - MYSQL_USER=user  
-            - MYSQL_PASSWORD= password   
-            - MYSQL_ROOT_PASSWORD= root  
+            - MYSQL_PASSWORD=password   
+            - MYSQL_ROOT_PASSWORD=root  
         networks: 
             - 'docker-networks'            
 
