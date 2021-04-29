@@ -1,11 +1,31 @@
 version: '3.4'
 services:
     configuration-server:
-        image:
+        image: configuration_server:0.0.1-SNAPSHOT
         restart: always
         container_name: configuration-server
         ports:
-            -'8888:8888'
+            - '8888:8888'
+        networks:
+            - 'docker-networks'
+    eureka-server:
+        image: eureka_server:0.0.1-SNAPSHOT
+        restart: always
+        container_name: eureka-server
+        ports:
+            - '8761:8761'
+        networks:
+            - 'docker-networks'
+    api-gateway:
+        image: api_gateway:0.0.1-SNAPSHOT
+        restart: always
+        depends_on: 
+            - eureka-server
+            - configuration-server
+
+        container_name: api-gateway
+        ports:
+            - '8080:8080'
         networks:
             - 'docker-networks'
         
