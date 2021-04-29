@@ -5,8 +5,10 @@ spring:
     config:
       server:
         git:
-          uri: file://${user.home}/config-repo
-       # username:
+          uri: https://github.com/xavi78/futursMicroservice.git
+          search-paths:
+            - "configuration_server_repository/{application}/{profile}"
+        # username:
        # password:
 
 server:
