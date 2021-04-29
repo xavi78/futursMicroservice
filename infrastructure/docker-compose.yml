@@ -1,13 +1,5 @@
 version: '3.4'
 services:
-    configuration-server:
-        image: configuration_server:0.0.1-SNAPSHOT
-        restart: always
-        container_name: configuration-server
-        ports:
-            - '8888:8888'
-        networks:
-            - 'docker-networks'
     eureka-server:
         image: eureka_server:0.0.1-SNAPSHOT
         restart: always
@@ -16,6 +8,29 @@ services:
             - '8761:8761'
         networks:
             - 'docker-networks'
+    
+    configuration-server:
+        image: configuration_server:0.0.1-SNAPSHOT
+        restart: always
+        container_name: configuration-server
+        ports:
+            - '8888:8888'
+        networks:
+            - 'docker-networks'
+   
+    mysql:
+        image: mysql:5.7.32
+        container_name: mysql
+        ports:
+            - '3306:3306'
+        environment: 
+            - MYSQL_DATABASE=microservice
+            - MYSQL_USER=user  
+            - MYSQL_PASSWORD= password   
+            - MYSQL_ROOT_PASSWORD= root  
+        networks: 
+            - 'docker-networks'            
+
     api-gateway:
         image: api_gateway:0.0.1-SNAPSHOT
         restart: always
