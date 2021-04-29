@@ -22,9 +22,10 @@ public GreetingController(@Lazy final EurekaClient eurekaClient)
 @GetMapping("/greeting")
 public String greeting(){
 
-    final var app= eurekaClient.getApplication(appName);
+   /* final var app= eurekaClient.getApplication(appName);
     final var size = app.size();
-    return "Hola Mundo -> " + app.getName() +" size ->" +size ;
+    return "Hola Mundo -> " + app.getName() +" size ->" +size ;*/
+    return "Hola mundo";
 }
 
 }
