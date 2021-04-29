@@ -1,6 +1,7 @@
 spring:
   application:
     name: configuration_server
+    label: main
   cloud:
     config:
       server:
@@ -8,6 +9,7 @@ spring:
           uri: https://github.com/xavi78/futursMicroservice.git
           search-paths:
             - "configuration_server_repository/{application}/{profile}"
+          default-label: main
         # username:
        # password:
 
