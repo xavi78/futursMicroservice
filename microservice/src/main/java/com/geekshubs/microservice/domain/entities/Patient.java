@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Table(name="PATIENTS")
+@Table(name="patients")
 public class Patient implements Serializable {
     private static final long serialVersionUID=1L;
 
