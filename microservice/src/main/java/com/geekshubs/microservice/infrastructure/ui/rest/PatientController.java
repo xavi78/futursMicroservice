@@ -1,16 +1,24 @@
 package com.geekshubs.microservice.infrastructure.ui.rest;
 
+import com.geekshubs.microservice.app.services.PatientService;
 import com.geekshubs.microservice.domain.entities.Patient;
+import com.geekshubs.microservice.domain.exceptions.PatientException;
+import com.netflix.discovery.converters.Auto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/patients")
 public class PatientController {
+
+    private PatientService patientService;
+
+    public PatientController(PatientService patientService){
+        this.patientService  = patientService;
+    }
+
 
     @RequestMapping(value="/home", method= RequestMethod.GET, produces="application/json" )
     public ResponseEntity<Void> home()
@@ -19,9 +27,19 @@ public class PatientController {
     }
 
 
-    public ResponseEntity<Patient> savePatient(@RequestBody Patient patient)
-    {
-        return null;
+    @PostMapping
+    public ResponseEntity<Patient> savePatient(@RequestBody Patient patient) throws Exception {
+
+       Patient result = null ;
+        try {
+            result = patientService.savePatient(patient);
+
+
+        }catch(PatientException ex){
+            return new ResponseEntity(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity(result,HttpStatus.OK);
     }
 
 
