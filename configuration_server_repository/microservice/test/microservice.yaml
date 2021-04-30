@@ -8,13 +8,12 @@ jdbc:
     driver-class-name: org.h2.Driver
   
 hibernate:
-  dialect: org.hibernate.dailect.H2Dialect
-  hibernate:
-    show:
-      sql: true
-    hbm2ddl.auto: create_drop
+  dialect: org.hibernate.dialect.H2Dialect
+  show_sql: true
+  hbm2ddl:
+    auto: create_drop
 
-loggin:
+logging:
   level:
     org:
       hibernate:
