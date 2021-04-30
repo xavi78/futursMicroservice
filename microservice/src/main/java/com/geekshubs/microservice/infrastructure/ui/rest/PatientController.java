@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("patients")
+@RequestMapping("/patients")
 public class PatientController {
 
-    @RequestMapping(value="", method= RequestMethod.GET, produces="application/json" )
+    @RequestMapping(value="/home", method= RequestMethod.GET, produces="application/json" )
     public ResponseEntity<Void> home()
     {
         return new ResponseEntity("Es una prueba", HttpStatus.OK);
