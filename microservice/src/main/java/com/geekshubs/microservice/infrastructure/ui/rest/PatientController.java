@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/patients")
@@ -40,6 +41,12 @@ public class PatientController {
         }
 
         return new ResponseEntity(result,HttpStatus.OK);
+    }
+
+
+    @GetMapping("/{uuid}")
+    public Mono<Patient> findByUUID(@PathVariable("uuid") String uuid){
+        return patientService.findPatientByUUID(uuid);
     }
 
 

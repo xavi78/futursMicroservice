@@ -49,7 +49,12 @@ public class Patient implements Serializable {
     {
         return this.name;
     }
+    
+    public String getLastname()
+    {
+        return this.lastname;
 
+    }
 
 
 }
