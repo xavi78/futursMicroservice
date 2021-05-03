@@ -79,6 +79,7 @@ services:
             - 'docker-networks'
         volumes:
             - ../db:/var/lib/mysql
+            - ./db/:/opt/bd
                     
 
 volumes:
