@@ -5,6 +5,7 @@ import com.geekshubs.microservice.domain.entities.Patient;
 import com.geekshubs.microservice.domain.exceptions.PatientException;
 import com.geekshubs.microservice.domain.repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -16,15 +17,21 @@ public class PatientServiceImpl implements PatientService{
 
     @Autowired
     private PatientRepository patientRepository;
+    @Autowired
+    private KafkaTemplate<String, Object> kafkaTemplate;
+    private static final String TOPIC ="patients";
 
     @Override
     public Patient savePatient(Patient patient) throws PatientException {
+        Patient patientReturn= null;
 
         try {
-            return patientRepository.save(patient);
+             patientReturn = patientRepository.save(patient);
         }catch(Exception ex){
             throw new PatientException(ex.getMessage());
         }
+        kafkaTemplate.send(TOPIC, patientReturn);
+        return patientReturn;
     }
 
     @Override
