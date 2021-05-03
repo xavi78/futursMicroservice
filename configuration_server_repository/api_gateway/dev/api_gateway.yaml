@@ -10,11 +10,11 @@ spring:
           enabled: true
           lower-case-service-id: true
       routes:
-        - id: microservice
-          uri: lb://microservice
+        - id: patients
+          uri: lb://patients
           order: 8080
           predicates:
-            - Path=/microservice
+            - Path=/patients
       loadbalancer:
         ribbon:
           enabled: false
