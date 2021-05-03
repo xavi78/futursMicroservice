@@ -2,6 +2,11 @@ package com.geekshubs.microservice.domain.entities;
 
 
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -11,6 +16,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
+@Data
 @Table(name="PATIENTS")
 public class Patient implements Serializable {
     private static final long serialVersionUID=1L;
@@ -28,6 +34,7 @@ public class Patient implements Serializable {
 
 
     @Column
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate birthdate;
 
     @Column
@@ -45,16 +52,6 @@ public class Patient implements Serializable {
         this.birthdate = birthdate;
     }
 
-    public String getName()
-    {
-        return this.name;
-    }
-    
-    public String getLastname()
-    {
-        return this.lastname;
-
-    }
 
 
 }
