@@ -1,5 +1,6 @@
 package com.geekshubs.patienthistory.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -29,11 +30,15 @@ public class PatientLineHistory {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date datecreated = new Date();
 
+    @Column(name="cab_uuid")
+    private String cabUuid;
 
-    @ManyToOne()
-    @JoinColumn(name="cab_uuid")
-    private PatientHistory patientHistory;
-
+/*
+   @ManyToOne()
+   @JoinColumn(name="cab_uuid")
+   @JsonIgnore
+   private PatientHistory patientHistory;
+*/
     public PatientLineHistory()
     {
 

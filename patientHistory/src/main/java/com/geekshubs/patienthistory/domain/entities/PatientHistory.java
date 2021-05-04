@@ -11,7 +11,6 @@ import java.util.UUID;
 @Table(name="PATIENTHISTORY")
 public class PatientHistory {
     @Id
-
     @Column(name="uuid", length=16, unique= true, nullable=false, insertable = false,updatable = false)
     private String uuid= UUID.randomUUID().toString();
 
@@ -30,8 +29,11 @@ public class PatientHistory {
     @Column
     private String specialty;
 
-    @OneToMany(mappedBy = "patientHistory", cascade =CascadeType.ALL)
+    @OneToMany(cascade =CascadeType.ALL)
+    @JoinColumn(name="cab_uuid")
     private List<PatientLineHistory> patientLineHistory;
+
+
 
     public PatientHistory()
     {
