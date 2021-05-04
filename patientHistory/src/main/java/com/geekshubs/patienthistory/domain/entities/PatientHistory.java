@@ -2,10 +2,8 @@ package com.geekshubs.patienthistory.domain.entities;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -13,7 +11,8 @@ import java.util.UUID;
 @Table(name="PATIENTHISTORY")
 public class PatientHistory {
     @Id
-    @Column(name="uuid", length=16, unique= true, nullable=false)
+
+    @Column(name="uuid", length=16, unique= true, nullable=false, insertable = false,updatable = false)
     private String uuid= UUID.randomUUID().toString();
 
     @Column(name="patient_name")
@@ -30,6 +29,9 @@ public class PatientHistory {
 
     @Column
     private String specialty;
+
+    @OneToMany(mappedBy = "patientHistory", cascade =CascadeType.ALL)
+    private List<PatientLineHistory> patientLineHistory;
 
     public PatientHistory()
     {
