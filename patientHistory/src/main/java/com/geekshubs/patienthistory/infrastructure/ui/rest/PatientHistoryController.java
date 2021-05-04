@@ -1,6 +1,7 @@
 package com.geekshubs.patienthistory.infrastructure.ui.rest;
 
 
+import com.geekshubs.patienthistory.app.services.PatientHistoryService;
 import com.geekshubs.patienthistory.app.services.PatientLineHistoryService;
 import com.geekshubs.patienthistory.domain.entities.PatientHistory;
 import com.geekshubs.patienthistory.domain.entities.PatientLineHistory;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 
 import javax.ws.rs.PathParam;
 
@@ -20,8 +22,10 @@ public class PatientHistoryController {
     private Logger log = LoggerFactory.getLogger(PatientHistoryController.class);
 
     private PatientLineHistoryService patientLineHistoryService;
-    public PatientHistoryController(PatientLineHistoryService patientLineHistoryService){
+    private PatientHistoryService patientHistoryService;
+    public PatientHistoryController(PatientLineHistoryService patientLineHistoryService, PatientHistoryService patientHistoryService){
         this.patientLineHistoryService= patientLineHistoryService;
+        this.patientHistoryService = patientHistoryService;
 
     }
 
@@ -44,6 +48,11 @@ public class PatientHistoryController {
 
     }
 
+    @GetMapping("/getallhistory/{uuid}")
+    public Flux<PatientHistory> getAllHistory(@PathVariable("uuid") String uuid) {
 
 
+        Flux<PatientHistory> result = Flux.just(patientHistoryService.getAllHistoryByUuid(uuid).get());
+        return result;
+    }
 }
