@@ -78,32 +78,7 @@ services:
             - '8761:8761'
         networks:
             - 'docker-networks'
-  
-    keycloak:
-        image: jboss/keycloak:12.0.4
-        container_name: keycloak
-        environment: 
-            - KEYCLOAK_USER=admin
-            - KEYCLOAK_PASSWORD=admin
-            - DB_VENDOR=mysql
-            - DB_ADDR=mysql
-            - DB_DATABASE=keycloak
-            - DB_USER=root
-            - DB_PASSWORD=root
-            - JDBC_PARAMS=useSSL=false
-        depends_on: 
-            - mysql
-        ports:
-            - 8091:8080
-            - 9990:9990
-        networks:
-            - 'docker-networks'
-        healthcheck:
-            test: "curl -f http://localhost:8091/auth || exit 1"
-            start_period: 30s
-
-                    
-
+ 
 volumes:
     portainerdata:
         

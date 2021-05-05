@@ -20,6 +20,11 @@ spring:
           order: 8080
           predicates:
             - Path=/patienthistory
+        - id: auth
+          uri: lb://auth
+          order: 8080
+          predicates:
+            - Path=/auth
             
       loadbalancer:
         ribbon:
