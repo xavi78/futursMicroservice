@@ -24,16 +24,24 @@ spring:
       loadbalancer:
         ribbon:
           enabled: false
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8091/auth/realms/futurs
 
-keycloak:
-  realm: Futurs
-  auth-server-url: http://localhost:8080/auth
-  ssl-required: external
-  resource: springboot-microservice
-  credentials:
-    secret: cc224963-ec02-486b-83d7-8044b0527cc1
-  use-resource-role-mappings: true
-  bearer-only: true
+#keycloak:
+#  realm: Futurs
+#  auth-server-url: http://localhost:8080/auth
+#  ssl-required: external
+#  resource: springboot-microservice
+#  credentials:
+#    secret: cc224963-ec02-486b-83d7-8044b0527cc1
+#  use-resource-role-mappings: true
+#  bearer-only: true
+
+
 
 
 
