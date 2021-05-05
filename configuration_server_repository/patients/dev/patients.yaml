@@ -28,6 +28,13 @@ spring:
     validate-on-migrate: false
     check-location: true
     locations: classpath:bd/migration
+  sleuth:
+    integration:
+       enabled: true
+    sampler:
+       probability: 1
+  zipkin:
+    base-url: http://localhost:9441/     
 
 
 

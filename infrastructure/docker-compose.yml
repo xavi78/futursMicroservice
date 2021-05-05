@@ -1,6 +1,7 @@
 version: '3.4'
 services:
 
+
     mysql:
         image: mysql:5.7.32
         container_name: mysql
@@ -78,6 +79,16 @@ services:
             - '8761:8761'
         networks:
             - 'docker-networks'
+
+    zipkin:
+        image: openzipkin/zipkin
+        restart: always
+        container_name: zipkin
+        ports:
+            - '9411:9411'
+        networks:
+            - 'docker-networks'
+
  
 volumes:
     portainerdata:
