@@ -25,9 +25,22 @@ spring:
         ribbon:
           enabled: false
 
+keycloak:
+  realm: Futurs
+  auth-server-url: http://localhost:8080/auth
+  ssl-required: external
+  resource: springboot-microservice
+  credenctials:
+    secret: cc224963-ec02-486b-83d7-8044b0527cc1
+  user-resource-role-mappings: true
+  bearer-only: true
+
+
+
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
   instance:
     preferIpAddress: true
+
