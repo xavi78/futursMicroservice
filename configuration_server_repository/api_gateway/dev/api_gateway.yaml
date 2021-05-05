@@ -30,9 +30,9 @@ keycloak:
   auth-server-url: http://localhost:8080/auth
   ssl-required: external
   resource: springboot-microservice
-  credenctials:
+  credentials:
     secret: cc224963-ec02-486b-83d7-8044b0527cc1
-  user-resource-role-mappings: true
+  use-resource-role-mappings: true
   bearer-only: true
 
 
