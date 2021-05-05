@@ -1,4 +1,4 @@
 # create databases
 CREATE DATABASE IF NOT EXISTS `patients`;
 CREATE DATABASE IF NOT EXISTS `patientHistory`;
-CREATE DATABASE IF NOT EXISTS `keycloak`;
+CREATE DATABASE IF NOT EXISTS `auth`;
